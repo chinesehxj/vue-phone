@@ -1,43 +1,90 @@
 <template>
-<div>
-  <mt-header title="多个按钮">
-      <div slot="left">
-      <mt-button v-link="'/'" icon="back">返回</mt-button>
-      <mt-button @click="handleClose">关闭</mt-button>
-    </div>
-    <mt-button icon="more" slot="right"></mt-button>
+<div class="page-tabbar">
+  <mt-header :title="titleName" >
   </mt-header>
-</div>
-
-<div>
+  <div class="page-wrap">
+    <mt-tab-container v-model="selected">
+      <mt-tab-container-item id="tab1">
+        <outline-data></outline-data>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="tab2">
+        <server-list></server-list>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="tab3">
+        <alarm-list></alarm-list>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="tab4">
+        <my-center></my-center>
+      </mt-tab-container-item>
+    </mt-tab-container>
+  </div>
   <mt-tabbar v-model="selected">
     
     <mt-tab-item id="tab1">
-      <i class="iconfont el-icon-dms-portal-icon-bangdingxunijiwangqia" style="font-size:30px;;margin-top:5px"></i>
-      tab1
+      <i class="iconfont el-icon-dms-shuju" style="font-size:30px;"></i></br>
+      数据总览
     </mt-tab-item>
     <mt-tab-item id="tab2">
-      <i class="iconfont el-icon-dms-portal-icon-bangdingxunijiwangqia" style="font-size:30px;;margin-top:5px"></i>
-      tab2
+      <i class="iconfont el-icon-dms-fuwuqi1" style="font-size:30px;"></i></br>
+      服务器
     </mt-tab-item>
     <mt-tab-item id="tab3">
-      <i class="iconfont el-icon-dms-portal-icon-bangdingxunijiwangqia" style="font-size:30px;;margin-top:5px"></i>
-      tab3
+      <i class="iconfont el-icon-dms-alarm" style="font-size:30px;"></i></br>
+      告警一览
     </mt-tab-item>
     <mt-tab-item id="tab4">
-      <i class="iconfont el-icon-dms-portal-icon-bangdingxunijiwangqia" style="font-size:30px;;margin-top:5px"></i>
-      tab4
+      <i class="iconfont el-icon-dms-user" style="font-size:30px;"></i></br>
+      个人中心
     </mt-tab-item>
   </mt-tabbar>
 </div>
 </template>
 
 <script>
+  import outlineData from './outline'
+  import alarmList from './alarms'
+  import serverList from './servers'
+  import myCenter from './my'
   export default {
+    name: 'page-tabbar',
+    data () {
+      return {
+        selected: 'tab1',
+        titleName: '数据总览'
+      }
+    },
+    components: {
+      outlineData,
+      alarmList,
+      serverList,
+      myCenter
+    },
+    watch: {
+      selected: function () {
+        if (this.selected === 'tab1') {
+          this.titleName = '数据总览'
+        } else if (this.selected === 'tab2') {
+          this.titleName = '服务器一览'
+        } else if (this.selected === 'tab3') {
+          this.titleName = '告警一览'
+        } else {
+          this.titleName = '个人中心'
+        }
+      }
+    }
   }
 </script>
 
 <style>
+  .page-tabbar {
+    overflow: hidden;
+    height: 100vh;
+  }
  
+  .page-wrap {
+    overflow: auto;
+    height: 100%;
+    padding-bottom: 100px;
+  }
 </style>
 
