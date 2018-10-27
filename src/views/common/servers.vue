@@ -38,6 +38,20 @@
                 </div>
               </el-col>
             </el-row>
+          </div>
+          <div style="margin:10px -20px -10px -20px;padding-top:10px;border-top:1px solid #f2f2f2">
+            <el-row >
+              <el-col :span="12">
+                <div style="height:30px;text-align:center">
+                  <el-button size="mini" type="success">查看详情</el-button>
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div style="height:30px;text-align:center">
+                  <el-button size="mini" type="success">查看告警</el-button>
+                </div>
+              </el-col>
+            </el-row>
           </div> 
       </el-card>
     </div>
@@ -133,6 +147,14 @@
   margin-top: 20px;
 }
 .div_item_title {
+  margin-top: -20px;
+  margin-left: -20px;
+  margin-right: -20px;
+  height: 40px;
+  text-align: left;
+  border-bottom: 1px solid #eaeef2;
+}
+.div_item_bottom {
   margin-top: -20px;
   margin-left: -20px;
   margin-right: -20px;
