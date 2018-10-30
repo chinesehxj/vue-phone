@@ -1,9 +1,11 @@
 <template>
   <div style="background-color:#f2f2f2;">
-    <mt-header title="服务器告警一览">
+    <mt-header title="服务器告警一览" style="position:fixed;width:100%;top:0px;z-index:99">
       
     </mt-header>
+    <div style="height:40px;"></div>
     <div style="padding:0px 10px 5px 10px;border-bottom: 1px solid #eaeef2;background-color:#ffffff;position:fixed;width:100%;top:40px;z-index:99">
+      
       <el-row :gutter='2'>
         <el-col :span="14">
           <div style="margin-top:5px;">
@@ -151,7 +153,6 @@
     // },
     methods: {
       openPickerStart () {
-        console.log('aaa')
         this.$refs.pickerStart.open()
       },
       handleConfirmStart (data) {
@@ -160,10 +161,8 @@
         this.defaultStartDate = dateObj
         this.dataForm.startDate = this.dateFtt('yyyy-MM-dd', dateObj)
         this.dataForm.timeRange[0] = this.dataForm.startDate
-        console.log(this.dataForm.timeRange)
       },
       openPickerEnd () {
-        console.log(this.dataForm.startDate)
         if (this.dataForm.startDate === '') {
           Toast({
             message: '请先选择起始日期',
@@ -179,7 +178,6 @@
         var dateObj = new Date(data)
         this.dataForm.endDate = this.dateFtt('yyyy-MM-dd', dateObj)
         this.dataForm.timeRange[1] = this.dataForm.endDate
-        console.log(this.dataForm.timeRange)
       },
       init (item) {
         this.paramsPsn = item.carrierpsn
@@ -199,7 +197,6 @@
         }).then(({data}) => {
           this.options = data && data.code === 0 ? data.page : []
         })
-        console.log('aaa' + this.dataForm.timeRange)
         this.$http({
           url: this.$http.adornUrl('/device/noticeInfo'),
           method: 'post',
@@ -213,7 +210,6 @@
           })
         }).then(({data}) => {
           if (data && data.code === 0) {
-            console.log(data)
             this.cautionDataList = data.page.list
             this.totalPage = data.page.totalCount
           } else {}
@@ -223,7 +219,6 @@
         this.$emit('refreshDataList')
       },
       loadBottom () {
-        console.log('loadmore')
         this.pageIndex = this.pageIndex + 1
         this.$http({
           url: this.$http.adornUrl('/device/noticeInfo'),
@@ -238,7 +233,6 @@
           })
         }).then(({data}) => {
           if (data && data.code === 0) {
-            console.log(data)
             if (data.page.list.length === 0) {
               this.allLoaded = true // 若数据已全部获取完毕
             } else {

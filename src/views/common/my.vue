@@ -76,7 +76,6 @@
         }).then(({data}) => {
           if (data && data.code === 0) {
             this.userInfo = data.user
-            console.log(this.userInfo)
           } else {
           }
         })

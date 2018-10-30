@@ -1,8 +1,11 @@
 <template>
   <div >
-    <mt-header title="数据总览">
+    <mt-header title="数据总览" style="position:fixed;width:100%;top:0px;z-index:99">
       
     </mt-header>
+    <div style="height:40px;">
+
+    </div>
     <el-row class="panel-group" :gutter="10">
       <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
         <div class='card-panel' >
@@ -139,7 +142,8 @@
                     </div>
                     <div v-else>
                         <div style="height:auto;padding:5px 15px 0px 10px;" v-for="item in servers[index + 1].serverInfo.Temperature">
-                            <p style="font-size:10px;color: rgba(0, 0, 0, 0.45);"><span>{{item.deviceName}}</span><span style="float:right;font-size:12px;color: #666;">{{item.sensorValue}} ℃</span></p>
+                            <p style="font-size:10px;color: rgba(0, 0, 0, 0.45);"><span>{{item.deviceName}}</span></p>
+                            <p style="height: 18px;"><span style="float:right;font-size:12px;color: #666;">{{item.sensorValue}} ℃</span></p>
                         </div>
                     </div>
                   </el-col>

@@ -1,9 +1,12 @@
 <template>
   <div>
     <div v-if="parentShow">
-    <mt-header title="服务器一览">
+    <mt-header title="服务器一览" style="position:fixed;width:100%;top:0px;z-index:99">
       
     </mt-header>
+    <div style="height:40px;">
+
+    </div>
     <div v-for="item in dataList" style="padding:10px" >
       <el-card >
           <div class='div_item_title'>
@@ -136,7 +139,6 @@
       },
       // 查看服务器告警
       showAlarm (item) {
-        console.log(item)
         this.parentShow = false
         this.alarmListVisible = true
         this.$nextTick(() => {
