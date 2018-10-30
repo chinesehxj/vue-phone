@@ -1,10 +1,16 @@
 <template>
   <div>
     <div v-if="parentShow">
-    <div v-for="item in dataList" style="padding:10px" @click="showDetail(item.carrierpsn)">
+    <mt-header title="服务器一览">
+      
+    </mt-header>
+    <div v-for="item in dataList" style="padding:10px" >
       <el-card >
           <div class='div_item_title'>
-              <span class='span_item_title'>{{item.serverCode}}</span><span style="float:right;margin-top:5px;margin-right:5px;"><el-button size="mini" type="success" round>在线</el-button></span>
+              <span class='span_item_title'>{{item.serverCode}}</span>
+              <!-- <span style="float:right;margin-top:5px;margin-right:5px;">
+                <el-button size="mini" type="success" round>在线</el-button>
+              </span> -->
           </div>
           <div>
             <el-row :gutter='8'>
@@ -39,16 +45,16 @@
               </el-col>
             </el-row>
           </div>
-          <div style="margin:10px -20px -10px -20px;padding-top:10px;border-top:1px solid #f2f2f2">
+          <div style="margin:10px -20px 0px -20px;padding-top:10px;border-top:1px solid #f2f2f2">
             <el-row >
               <el-col :span="12">
                 <div style="height:30px;text-align:center">
-                  <el-button size="mini" type="success">查看详情</el-button>
+                  <el-button size="medium" type="success" plain @click="showDetail(item.carrierpsn)">查看详情</el-button>
                 </div>
               </el-col>
               <el-col :span="12">
                 <div style="height:30px;text-align:center">
-                  <el-button size="mini" type="success">查看告警</el-button>
+                  <el-button size="medium" type="danger" @click="showAlarm(item)">查看告警</el-button>
                 </div>
               </el-col>
             </el-row>
@@ -58,11 +64,13 @@
 
   </div>
   <servers-detail v-if="serversDetailVisible" ref="serversDetailModule" @refreshDataList="showParent"></servers-detail>
+  <alarm-list v-if="alarmListVisible" ref="alarmListModule" @refreshDataList="showParent"></alarm-list>
   </div>
 </template>
 
 <script>
   import serversDetail from './serversDetail'
+  import alarmList from './alarms'
   export default {
     data () {
       return {
@@ -72,14 +80,16 @@
         totalPage: 0,
         topStatus: '',
         parentShow: true,
-        serversDetailVisible: false
+        serversDetailVisible: false,
+        alarmListVisible: false
       }
     },
     created () {
       this.getDataList()
     },
     components: {
-      serversDetail
+      serversDetail,
+      alarmList
     },
     methods: {
       loadTop () {
@@ -114,14 +124,23 @@
       showParent () {
         this.parentShow = true
         this.serversDetailVisible = false
+        this.alarmListVisible = false
       },
       // 查看服务器详情
       showDetail (psnNum) {
-        console.log(psnNum)
         this.parentShow = false
         this.serversDetailVisible = true
         this.$nextTick(() => {
           this.$refs.serversDetailModule.init(psnNum)
+        })
+      },
+      // 查看服务器告警
+      showAlarm (item) {
+        console.log(item)
+        this.parentShow = false
+        this.alarmListVisible = true
+        this.$nextTick(() => {
+          this.$refs.alarmListModule.init(item)
         })
       }
     }

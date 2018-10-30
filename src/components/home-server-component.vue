@@ -2,11 +2,11 @@
 <el-dialog
     title="添加服务器至看板"
     :close-on-click-modal="false"
-    :visible.sync="visible" width="800px">
+    :visible.sync="visible" width="350px">
   <div class="mod-server">
     <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
       <el-form-item>
-        <el-input v-model="dataForm.carrierpsn" size="small" placeholder="PSN" clearable></el-input>
+        <el-input v-model="dataForm.carrierpsn" size="small" placeholder="PSN" clearable style="width:150px"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button @click="getDataList()" size="small" icon="el-icon-search">查询</el-button>
@@ -19,7 +19,8 @@
       ref="multipleTable"
       v-loading="dataListLoading"
       @selection-change="selectionChangeHandle"
-      style="width: 100%; ">
+      style="width: 100%; "
+      height="350">
       <el-table-column
         type="selection"
         header-align="center"
@@ -118,7 +119,7 @@
         label="更新时间">
       </el-table-column>
     </el-table>
-    <el-pagination
+    <!-- <el-pagination
       @size-change="sizeChangeHandle"
       @current-change="currentChangeHandle"
       :current-page="pageIndex"
@@ -126,7 +127,7 @@
       :page-size="pageSize"
       :total="totalPage"
       layout="total, sizes, prev, pager, next, jumper">
-    </el-pagination>
+    </el-pagination> -->
   </div>
 </el-dialog>
 </template>
@@ -139,8 +140,8 @@
           carrierpsn: ''
         },
         dataList: [],
-        pageIndex: 1,
-        pageSize: 10,
+        pageIndex: '',
+        pageSize: '',
         totalPage: 0,
         dataListLoading: false,
         dataListSelections: [],

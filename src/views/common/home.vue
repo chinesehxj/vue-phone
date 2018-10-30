@@ -1,7 +1,7 @@
 <template>
 <div class="page-tabbar">
-  <mt-header :title="titleName" >
-  </mt-header>
+  <!-- <mt-header :title="titleName" >
+  </mt-header> -->
   <div class="page-wrap">
     <mt-tab-container v-model="selected">
       <mt-tab-container-item id="tab1">
@@ -11,7 +11,7 @@
         <server-list></server-list>
       </mt-tab-container-item>
       <mt-tab-container-item id="tab3">
-        <alarm-list></alarm-list>
+        <storage></storage>
       </mt-tab-container-item>
       <mt-tab-container-item id="tab4">
         <my-center></my-center>
@@ -29,8 +29,8 @@
       服务器
     </mt-tab-item>
     <mt-tab-item id="tab3">
-      <i class="iconfont el-icon-dms-alarm" style="font-size:30px;"></i></br>
-      告警一览
+      <i class="iconfont el-icon-dms-yingpan" style="font-size:30px;"></i></br>
+      存储
     </mt-tab-item>
     <mt-tab-item id="tab4">
       <i class="iconfont el-icon-dms-user" style="font-size:30px;"></i></br>
@@ -42,7 +42,7 @@
 
 <script>
   import outlineData from './outline'
-  import alarmList from './alarms'
+  import storage from './storage'
   import serverList from './servers'
   import myCenter from './my'
   export default {
@@ -55,23 +55,23 @@
     },
     components: {
       outlineData,
-      alarmList,
+      storage,
       serverList,
       myCenter
-    },
-    watch: {
-      selected: function () {
-        if (this.selected === 'tab1') {
-          this.titleName = '数据总览'
-        } else if (this.selected === 'tab2') {
-          this.titleName = '服务器一览'
-        } else if (this.selected === 'tab3') {
-          this.titleName = '告警一览'
-        } else {
-          this.titleName = '个人中心'
-        }
-      }
     }
+    // watch: {
+    //   selected: function () {
+    //     if (this.selected === 'tab1') {
+    //       this.titleName = '数据总览'
+    //     } else if (this.selected === 'tab2') {
+    //       this.titleName = '服务器一览'
+    //     } else if (this.selected === 'tab3') {
+    //       this.titleName = '告警一览'
+    //     } else {
+    //       this.titleName = '个人中心'
+    //     }
+    //   }
+    // }
   }
 </script>
 

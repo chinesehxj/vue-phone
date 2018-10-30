@@ -1,52 +1,10 @@
 <template>
   <div>
     <div v-if="parentShow">
-    <mt-header title="个人中心">
-      
-    </mt-header>
-    
-    <div style="padding:10px; height:100px;">
-      <el-row>
-        <el-col :span="6">
-          <div >
-            <img src="~@/assets/img/avatar.png" style="width:80px;height:80px;border-radius: 40px;"/>
-          </div>
-
-        </el-col>
-        <el-col :span="18">
-          <div style="margin-top:10px;">
-            <p>
-              <span style="font-size:18px;">{{userInfo.realName}}</span>
-            </p>
-            <p>
-              <span style="font-size:14px;">{{userInfo.companyName}}</span>
-            </p>
-          </div>
-        </el-col>
-      </el-row>
+      <mt-header title="存储服务器">
+      </mt-header>
+      <span>正在开发中</span>
     </div>
-    <div style="height:10px;background-color:#f2f2f2;"></div>
-    <div style="border-bottom:1px solid #f2f2f2;">
-      <mt-cell title="联系电话">
-        <span>{{userInfo.mobile}}</span>
-        <i slot="icon" class="el-icon-phone-outline" style="color:#67C23A;"></i>
-      </mt-cell>
-    </div>
-    <div style="border-bottom:1px solid #f2f2f2;">
-      <mt-cell title="E-mail">
-        <span>{{userInfo.email}}</span>
-        <i slot="icon" class="el-icon-message" style="color:#E6A23C;"></i>
-      </mt-cell>
-    </div>
-    <div style="margin-top:20px;padding:10px 20px;">
-      <span style="float:right;">
-        <el-button type="primary" icon="el-icon-edit-outline" @click.native="updatePasswordHandle(userInfo.username)">修改密码</el-button>
-        <el-button type="danger" icon="el-icon-delete" @click.native="logoutHandle()">退出</el-button>
-      </span>
-    </div>
-    </div>
-
-  <update-password v-if="updatePassowrdVisible" ref="updatePassowrd" @refreshDataList="showParent"></update-password>
   </div>
 </template>
 
@@ -65,7 +23,7 @@
       UpdatePassword
     },
     created () {
-      this.getUserInfo()
+      // this.getUserInfo()
     },
     methods: {
       getUserInfo () {

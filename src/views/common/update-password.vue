@@ -6,7 +6,7 @@
     <div style="padding:20px;">
       <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
         <el-form-item label="账号">
-          <span>{{ userName }}</span>
+          <span>{{ dataForm.userName }}</span>
         </el-form-item>
         <el-form-item label="原密码" prop="password">
           <el-input type="password" v-model="dataForm.password"></el-input>
@@ -39,6 +39,7 @@
       return {
         visible: false,
         dataForm: {
+          userName: '',
           password: '',
           newPassword: '',
           confirmPassword: ''
@@ -57,19 +58,20 @@
         }
       }
     },
-    computed: {
-      userName: {
-        get () { return this.$store.state.user.name }
-      },
-      mainTabs: {
-        get () { return this.$store.state.common.mainTabs },
-        set (val) { this.$store.commit('common/updateMainTabs', val) }
-      }
-    },
+    // computed: {
+    //   userName: {
+    //     get () { return this.$store.state.user.name }
+    //   },
+    //   mainTabs: {
+    //     get () { return this.$store.state.common.mainTabs },
+    //     set (val) { this.$store.commit('common/updateMainTabs', val) }
+    //   }
+    // },
     methods: {
       // 初始化
-      init () {
+      init (userName) {
         this.visible = true
+        this.dataForm.userName = userName
         this.$nextTick(() => {
           this.$refs['dataForm'].resetFields()
         })

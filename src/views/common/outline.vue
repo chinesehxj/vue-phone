@@ -1,5 +1,8 @@
 <template>
   <div >
+    <mt-header title="数据总览">
+      
+    </mt-header>
     <el-row class="panel-group" :gutter="10">
       <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
         <div class='card-panel' >

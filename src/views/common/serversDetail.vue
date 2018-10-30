@@ -46,6 +46,9 @@
 </style>
 <template>
         <div style="background-color:#f2f2f2;">
+                <mt-header title="服务器详情">
+      
+                </mt-header>
                 <div style="padding-bottom:3px;border-bottom: 1px solid #eaeef2;background-color:#ffffff;position:fixed;width:100%;top:40px;z-index:99">
                     <el-row>
                         <el-col :span='18'>
